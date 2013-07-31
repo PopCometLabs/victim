@@ -5,11 +5,11 @@ server.use(restify.queryParser({ mapParams: false }));
 server.use(restify.bodyParser({ mapParams: false }));
 
 server.get('/simple', function (req, res) {
-    if (typeof req.query.big !== 'undefined') {
+    if (typeof req.query.response_size) {
         var response = [];
 
-        for (var i = 0; i < 10000; i++) {
-            response.push('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+        for (var i = 0; i < parseInt(req.query.response_size, 10); i++) {
+            response.push('X');
         }
 
         return res.send(response.join(''));
